@@ -1,85 +1,104 @@
 * {
-    padding: 0%;
-    background-color: rgb(255, 255, 255);
-
-
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 
-.header,
-.izquierda,
-.derecha,
-.centro {
-    display: inline-flex;
-    gap: 50px;
-    pad: 5px;
-    border: 10px solid black;
-    width: 99%;
-    justify-content: center;
-    align-items: center;
-
-
-}
-
-#user_img {
-    border-radius: 50px 50px 50px 50px;
-    background-color: red;
-    width: 70px;
-    height: 70px;
-}
-
-.imagen_perfil {
-    margin: 0%;
-    width: 80%;
-    height: 400px;
+/* HEADER */
+.header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    border-radius: 40px;
-    background-image: url(/img/hojas.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-
-}
-a .header-img{
-    width: 2.5em; 
-    height: 2.5em;
+    padding: 15px 30px;
+    border-bottom: 2px solid #ccc;
+    background: #fff;
 }
 
+.izquierda, .centro, .derecha {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
-#titulo_de_clase {
-    font-size: 100px;
-    color: rgb(245, 233, 233);
-    background-color: transparent;
+.header-img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
 
+.user-img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 /*-----------------------------------------------*/
+/* BANNER CLASE */
+.imagen_perfil {
+    width: 90%;
+    height: 300px;
+    margin: 40px auto;
+    border-radius: 30px;
+    background-image: url(/img/hojas.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-.cajon-aviso-tareas{
+#titulo_de_clase {
+    font-size: 48px;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/*-----------------------------------------------*/
+/* CONTENIDO */
+.cajon-aviso-tareas {
+    width: 900px;
+    margin: auto;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    justify-content: right;
-    align-items: right;
+    gap: 40px;
 }
-.tarea, .aviso{
-    border: 10px solid black;
-    display: inline-flex;
-    background-color: gray;
-    margin-top: 50px;
-    justify-content: right;
-    border-radius:  40px;
+
+.tarea, .aviso {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #f2f2f2;
+    border: 2px solid #ccc;
 }
-.tarea{
-    width: 900px;
-    height: 170px;
+
+.hora-fecha {
+    font-size: 14px;
+    color: gray;
 }
-.aviso{
-    width: 900px;
-    height: 470px;
+
+.texto-aviso {
+    margin-top: 10px;
+}
+
+.reaccion {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.reaccion button {
+    background: #e6e6e6;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.reaccion button:hover {
+    background: #d6d6d6;
 }
