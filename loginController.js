@@ -1,10 +1,6 @@
 
-//import { query } from './db.js'
 
-export const query = (text, params) => {
-    console.log("ejecutando query", text, params)
-    return pool.query(text, params)
-}
+import {query} from './db.js';
 
 
 export const login = async (req, res) => {
@@ -31,9 +27,9 @@ export const login = async (req, res) => {
         }
     } catch (err) {
         console.error("Error durante el login", err.stack); // Usar console.error
-        // 3. SOLUCIÓN: Corregir la sintaxis de retorno (encadenamiento de .status().json())
+       
         return res.status(500).json({
-            error: 'Error interno del servidor'
+            error: 'Error interno del servidor ' 
         });
     }
 
@@ -55,14 +51,14 @@ export const register = async (req, res) => {
             VALUES ($1, $2, $3, $4)
             RETURNING id, email; 
         `;
-        // 4. Crear el array de parámetros
+        // crear el array de parámetros
         const params = [name, lastname, email, password];
 
-        // 5. Ejecutar la consulta
+        // ejecutar la consulta
         const result = await query(text, params);
 
-        // La inserción fue exitosa. Retornamos los datos del nuevo usuario.
-        // Asumiendo que RETURNING devolvió una fila (rows[0])
+        // la insercion fue exitosa. retornamos los datos del nuevo usuario.
+        // asumiendo que RETURNING devolvio una fila (rows[0])
         const newUser = result.rows[0];
 
         return res.status(201).json({
@@ -72,8 +68,8 @@ export const register = async (req, res) => {
         });
 
     } catch (err) {
-        // Manejo de errores, especialmente si el email ya existe (violación de restricción UNIQUE)
-        if (err.code === '23505') { // Código de error de PostgreSQL para violación de UNIQUE constraint
+        // violacion de restriccion UNIQUE para correo
+        if (err.code === '23505') { // codigo de error de PostgreSQL para violacion de UNIQUE constraint
             return res.status(409).json({ error: 'El correo electrónico ya está registrado.' });
         }
 

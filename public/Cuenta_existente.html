@@ -66,9 +66,8 @@
                     localStorage.setItem('userID', data.userID);
                     localStorage.setItem('username', data.username);
 
-                    // 3. REDIRECCIÓN (La clave para entrar a la app)
-                    // Cambia 'app.html' por la URL real de tu aplicación/dashboard.
-                    window.location.href = '/html/map.html'; // o '/dashboard'
+                
+                    window.location.href = 'curso.html'; 
                 } else {
                     messageElement.textContent = `Error: ${data.error}`;
                     messageElement.style.color = `red`;
