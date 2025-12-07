@@ -13,6 +13,8 @@ services:
       - DB_DATABASE=${DB_DATABASE}
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
+    # Descomenta la siguiente linea para que el contenedor corra con tu usuario y los archivos creados no sean root
+    # user: "${UID}:${GID}"
     volumes:
       - .:/app
       - /app/node_modules
