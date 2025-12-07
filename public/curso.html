@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/main.css">
-	<title>Lemur Anonimo</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Lemur Anonimo</title>
+  </head>
 
 <body>
 	<header class="header">
@@ -17,17 +16,32 @@
 			</a>
 		</div>
 
-		<nav class="centro">
-			<a href="#"><img src="img/assignment.svg" alt="Tarea" class="header-img"></a>
-			<a href="#">
-				<h2>Tarea</h2>
-			</a>
+      <nav class="centro">
+        <a href="asignaciones.html">
+          <img src="img/asignacion.svg" alt="Tarea" class="header-img" />
+        </a>
+        <a href="asignaciones.html">
+          <h2>Agregar Tarea</h2>
+        </a>
+
+        <a href="#"
+          ><img src="img/assignment.svg" alt="Tarea" class="header-img"
+        /></a>
+        <a href="#">
+          <h2>Tarea</h2>
+        </a>
 
 			<a href="https://calendar.google.com" target="_blank"><img src="img/calander.svg" alt="Calendario"
 					class="header-img"></a>
 			<a href="https://calendar.google.com" target="_blank">
 				<h2>Calendario</h2>
 			</a>
+        <a href="https://calendar.google.com" target="_blank"
+          ><img src="img/calander.svg" alt="Calendario" class="header-img"
+        /></a>
+        <a href="https://calendar.google.com" target="_blank">
+          <h2>Calendario</h2>
+        </a>
 
 			<a href="https://meet.google.com/landing" target="_blank"><img src="img/videocall.svg" alt="Video Llamada"
 					class="header-img"></a>
@@ -35,25 +49,37 @@
 				<h2>Video Llamadas</h2>
 			</a>
 		</nav>
+        <a href="https://meet.google.com/landing" target="_blank"
+          ><img src="img/videocall.svg" alt="Video Llamada" class="header-img"
+        /></a>
+        <a href="https://meet.google.com/landing" target="_blank">
+          <h2>Video Llamadas</h2>
+        </a>
+      </nav>
 
-		<div class="derecha">
-			<a href="#"><img src="img/notification.svg" alt="notif" class="header-img"></a>
+      <div class="derecha">
+        <a href="#"
+          ><img src="img/notification.svg" alt="notif" class="header-img"
+        /></a>
 
-			<select id="opciones" name="opciones">
-				<option value="opcion1">Opción 1</option>
-				<option value="opcion2">Opción 2</option>
-				<option value="opcion3">Opción 3</option>
-			</select>
+        <select id="opciones" name="opciones">
+          <option value="opcion1">Opción 1</option>
+          <option value="opcion2">Opción 2</option>
+          <option value="opcion3">Opción 3</option>
+        </select>
 
-			<a href="#"><img src="img/user.jpg" alt="user" class="user-img"></a>
-		</div>
-	</header>
+        <a href="#"><img src="img/user.jpg" alt="user" class="user-img" /></a>
+      </div>
+    </header>
 
-	<section class="imagen_perfil">
-		<h1 id="titulo_de_clase">Desarrollo de software a gran escala</h1>
-	</section>
+    <section class="imagen_perfil">
+      <h1 id="titulo_de_clase">Desarrollo de software a gran escala</h1>
+    </section>
 
-	<section class="cajon-aviso-tareas">
+    <section class="cajon-aviso-tareas">
+      <!-- ***** CONTENEDOR DONDE APARECERÁN LAS NUEVAS TAREAS ***** -->
+      <div id="lista-tareas" class="lista-tareas"></div>
+      <!-- ******************************************************** -->
 
 		<div class="tarea">
 			<img src="img/user.jpg" alt="user" class="user-img">
@@ -63,25 +89,36 @@
 				<p class="hora-fecha">11-Nov-2025</p>
 			</div>
 		</div>
+      <div class="tarea">
+        <img src="img/user.jpg" alt="user" class="user-img" />
+        <div class="contenido">
+          <h1>
+            <strong>Ismael Robles</strong>
+            <a href="">ha publicado una nueva tarea: Examen 1</a>
+          </h1>
+          <p class="hora-fecha">11-Nov-2025</p>
+          <p></p>
+        </div>
+      </div>
 
-		<div class="aviso">
-			<img src="img/user.jpg" alt="user" class="user-img">
+      <div class="aviso">
+        <img src="img/user.jpg" alt="user" class="user-img" />
 
-			<div class="contenido">
-				<h1>Ismael Robles Martínez</h1>
-				<p class="hora-fecha">11-Nov-2025</p>
+        <div class="contenido">
+          <h1>Ismael Robles Martínez</h1>
+          <p class="hora-fecha">11-Nov-2025</p>
 
-				<p class="texto-aviso">Alguien dejó un mouse en el salón 703.</p>
+          <p class="texto-aviso">Alguien dejó un mouse en el salón 703.</p>
 
-				<div class="reaccion">
-					<button>👍 Me gusta</button>
-					<button>💬 Comentar</button>
-				</div>
-			</div>
-		</div>
+          <div class="reaccion">
+            <button>👍 Me gusta</button>
+            <button>💬 Comentar</button>
+          </div>
+        </div>
+      </div>
 
-		<div class="tarea">
-			<img src="img/user.jpg" alt="user" class="user-img">
+      <div class="tarea">
+        <img src="img/user.jpg" alt="user" class="user-img" />
 
 			<div class="contenido">
 				<a href="tarea.html">
@@ -91,24 +128,31 @@
 				<p class="hora-fecha">11-Nov-2025</p>
 			</div>
 		</div>
+        <div class="contenido">
+          <h1>
+            <strong>Ismael Robles</strong> ha publicado una nueva tarea: Examen1
+          </h1>
+          <p class="hora-fecha">11-Nov-2025</p>
+        </div>
+      </div>
 
-		<div class="aviso">
-			<img src="img/user.jpg" alt="user" class="user-img">
+      <div class="aviso">
+        <img src="img/user.jpg" alt="user" class="user-img" />
 
-			<div class="contenido">
-				<h1>Ismael Robles Martínez</h1>
-				<p class="hora-fecha">11-Nov-2025</p>
+        <div class="contenido">
+          <h1>Ismael Robles Martínez</h1>
+          <p class="hora-fecha">11-Nov-2025</p>
 
-				<p class="texto-aviso">Alguien dejó un mouse en el salón 703.</p>
+          <p class="texto-aviso">Alguien dejó un mouse en el salón 703.</p>
 
-				<div class="reaccion">
-					<button>👍 Me gusta</button>
-					<button>💬 Comentar</button>
-				</div>
-			</div>
-		</div>
+          <div class="reaccion">
+            <button>👍 Me gusta</button>
+            <button>💬 Comentar</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-	</section>
-</body>
-
+    <script src="js/main.js"></script>
+  </body>
 </html>
