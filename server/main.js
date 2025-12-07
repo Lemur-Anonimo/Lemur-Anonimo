@@ -3,6 +3,7 @@ import 'dotenv/config'
 import pg from "pg";
 import { login } from '../loginController.js';
 import { register } from '../loginController.js';
+import { getComentariosPrivados } from './controllers/ControllerComentariosPrivados.js';
 const { Pool } = pg;
 
 
@@ -13,6 +14,12 @@ const app = express();
 
 app.use(cors());
 
+// ------------------- NUEVO: rutas para comentarios privados -------------------
+
+// Obtener comentarios de un usuario en una tarea
+app.get('/api/comentarios/:id_usuario/:id_tarea', getComentariosPrivados);
+
+// ------------------------------------------------------------------------------
 
 
 //le decimos a express que cargue la carpeta public
