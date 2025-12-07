@@ -1,0 +1,45 @@
+services:
+  server:
+    container_name: ${SERVER_HOST}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    environment:
+      - DB_PORT=${DB_PORT}
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    # Descomenta la siguiente linea para que el contenedor corra con tu usuario y los archivos creados no sean root
+    # user: "${UID}:${GID}"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    image: postgres:15-alpine
+    container_name: ${DB_HOST}
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - database-v:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/classroom.sql:/docker-entrypoint-initdb.d/classroom.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_DATABASE}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  database-v:

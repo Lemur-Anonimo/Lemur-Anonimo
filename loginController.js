@@ -1,6 +1,6 @@
 
 
-import {query} from './db.js';
+import { query } from './database/db.js';
 
 
 export const login = async (req, res) => {
@@ -27,9 +27,9 @@ export const login = async (req, res) => {
         }
     } catch (err) {
         console.error("Error durante el login", err.stack); // Usar console.error
-       
+
         return res.status(500).json({
-            error: 'Error interno del servidor ' 
+            error: 'Error interno del servidor '
         });
     }
 
@@ -39,13 +39,13 @@ export const register = async (req, res) => {
 
     const { name, lastname, email, password } = req.body;
 
-   
+
     if (!name || !lastname || !email || !password) {
         return res.status(400).json({ error: 'Faltan campos obligatorios para el registro.' });
     }
 
     try {
-        
+
         const text = `
             INSERT INTO credentials (name, lastname, email, password)
             VALUES ($1, $2, $3, $4)

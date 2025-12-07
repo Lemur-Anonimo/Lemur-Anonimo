@@ -1,87 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/principal.css">
-    <title>Lemur Anonimo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/principal.css" />
+  <link rel="stylesheet" href="css/crearClase.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>Lemur Anonimo</title>
 </head>
 
 <body>
-    <header class="header">
-        <div class="izquierda">
-            <a href="#"><img src="img/menu.svg" alt="menu" class="header-img"></a>
-            <a href="#">
-                <h2>Lemur Anonimo</h2>
-            </a>
+  <header class="header">
+    <div class="izquierda">
+      <a href="#"><img src="img/menu.svg" alt="menu" class="header-img" /></a>
+      <a href="#">
+        <h2>Lemur Anonimo</h2>
+      </a>
+    </div>
+
+    <nav class="centro">
+        <a href="#"
+          ><img src="img/assignment.svg" alt="Tarea" class="header-img"
+        /></a>
+      <a href="#">
+        <h2>Tarea</h2>
+      </a>
+
+        <a href="https://calendar.google.com" target="_blank"
+          ><img src="img/calander.svg" alt="Calendario" class="header-img"
+        /></a>
+      <a href="https://calendar.google.com" target="_blank">
+        <h2>Calendario</h2>
+      </a>
+
+        <a href="https://meet.google.com/landing" target="_blank"
+          ><img src="img/videocall.svg" alt="Video Llamada" class="header-img"
+        /></a>
+      <a href="https://meet.google.com/landing" target="_blank">
+        <h2>Video Llamadas</h2>
+      </a>
+    </nav>
+
+    <div class="derecha">
+      <a href="#"><img src="img/notification.svg" alt="notif" class="header-img" /></a>
+
+      <select id="opciones" name="opciones">
+        <option value="opcion1">Opción 1</option>
+        <option value="opcion2">Opción 2</option>
+        <option value="opcion3">Opción 3</option>
+      </select>
+
+      <button id="abrirOpcionesClase">
+        <span class="material-symbols-outlined"> add </span>
+      </button>
+      <dialog id="dialogoOpcionesClase" closedby="any">
+        <h2>Opciones</h2>
+        <form method="dialog">
+          <button id="crearClasebtn">Crear una Clase</button>
+          <button id="unirseClasebtn">Unirse a Clase</button>
+        </form>
+      </dialog>
+      <dialog id="crearClaseDialog" closedby="any">
+        <h2>Crear una clase</h2>
+        <label for="nombreClase">Nombre de la clase(obligatorio)</label>
+        <input type="text" id="nombreClase" />
+        <label for="seccion">Sección</label>
+        <input type="text" id="seccion" />
+        <label for="asunto">Asunto</label>
+        <input type="text" id="asunto" />
+        <label for="sala">Sala</label>
+        <input type="text" id="sala" />
+        <form method="dialog">
+          <button id="crearClaseCancelar">Cancelar</button>
+          <button id="crearClaseAceptar">Crear</button>
+        </form>
+      </dialog>
+
+      <dialog id="unirseClaseDialog" closedby="any">
+        <h2>Ingrese el código de la clase</h2>
+        <input type="text" name="codigoClase" id="codigoClase" />
+        <form method="dialog">
+          <button id="unirseClaseCancelar">Cancelar</button>
+          <button id="unirseClaseAceptar">Unirse</button>
+        </form>
+      </dialog>
+
+      <a href="#"><img src="img/user.jpg" alt="user" class="user-img" /></a>
+    </div>
+  </header>
+
+  <section class="imagen_perfil">
+    <h1 id="titulo_de_clase">TUS CLASES</h1>
+  </section>
+
+  <section class="cajon-aviso-tareas">
+    <div class="tarea">
+      <div id="img-clase">
+        <div class="contenido">
+          <h1 class="materia">
+            <a class="a-clase" href="#"> Microcontroladores</a>
+          </h1>
+          <h2><strong>Erick Reyes</strong></h2>
         </div>
-
-        <nav class="centro">
-            <a href="#"><img src="img/assignment.svg" alt="Tarea" class="header-img"></a>
-            <a href="#">
-                <h2>Tarea</h2>
-            </a>
-
-            <a href="https://calendar.google.com" target="_blank"><img src="img/calander.svg" alt="Calendario" class="header-img"></a>
-            <a href="https://calendar.google.com" target="_blank">
-                <h2>Calendario</h2>
-            </a>
-
-            <a href="https://meet.google.com/landing" target="_blank"><img src="img/videocall.svg" alt="Video Llamada" class="header-img"></a>
-            <a href="https://meet.google.com/landing" target="_blank">
-                <h2>Video Llamadas</h2>
-            </a>
-        </nav>
-
-        <div class="derecha">
-            <a href="#"><img src="img/notification.svg" alt="notif" class="header-img"></a>
-
-            <select id="opciones" name="opciones">
-                <option value="opcion1">Opción 1</option>
-                <option value="opcion2">Opción 2</option>
-                <option value="opcion3">Opción 3</option>
-            </select>
-
-            <a href="#"><img src="img/user.jpg" alt="user" class="user-img"></a>
+      </div>
+    </div>
+    <div class="tarea">
+      <div id="img-clase">
+        <div class="contenido">
+          <h1 class="materia">
+            <a class="a-clase" href="curso.html">
+                Desarrollo de Software a Gran Escala</a
+              >
+          </h1>
+          <h2><strong>Ismael Robles</strong></h2>
         </div>
-    </header>
-
-    <section class="imagen_perfil">
-        <h1 id="titulo_de_clase">TUS CLASES</h1>
-    </section>
-
-    <section class="cajon-aviso-tareas">
-
-        <div class="tarea">
-
-            <div id="img-clase">
-                <div class="contenido">
-                    <h1 class="materia"> <a class="a-clase" href="#"> Microcontroladores</a></h1>
-                    <h2><strong>Erick Reyes</strong></h2>
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="tarea">
+      <div id="img-clase">
+        <div class="contenido">
+          <h1 class="materia">
+              <a class="a-clase" class="a-clase" href="#"
+                >Interfaces de Usuario</a
+              >
+          </h1>
+          <h2><strong>Monserrat Alvarado</strong></h2>
         </div>
-        <div class="tarea">
-
-            <div id="img-clase">
-                <div class="contenido">
-                    <h1  class="materia"> <a class="a-clase" href="curso.html"> Desarrollo de Software a Gran Escala</a></h1>
-                    <h2><strong>Ismael Robles</strong></h2>
-                </div>
-            </div>
-        </div>
-        <div class="tarea">
-
-            <div id="img-clase">
-                <div class="contenido">
-                    <h1  class="materia"> <a class="a-clase" class="a-clase" href="#">Interfaces de Usuario</a></h1>
-                    <h2><strong>Monserrat Alvarado</strong></h2>
-
-                </div>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </section>
+  <script src="js/crearClase.js"></script>
 </body>
-
 </html>

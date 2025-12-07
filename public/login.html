@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/login.css" />
     <title>Acceder</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="wrapper">
         <div class="container">
             <h1>Crea una cuenta</h1>
@@ -91,7 +92,7 @@
                 console.error('error en comprobar contraseñas' + error)
             }
             try {
-                const response = await fetch('http://localhost:8082/api/register', {
+                const response = await fetch('http://localhost:3000/api/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -102,12 +103,12 @@
                 if (response.ok) {
                     messageElement.textContent = `Exito: ${data.message}`;
                     messageElement.style.color = `green`;
-                    
+
                     localStorage.setItem('userID', data.userID);
                     localStorage.setItem('username', data.username);
 
-                    
-                    window.location.href = 'Cuenta_existente.html'; 
+
+                    window.location.href = 'cuenta_existente.html';
                 } else {
                     messageElement.textContent = `Error: ${data.error}`;
                     messageElement.style.color = `red`;

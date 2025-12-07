@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/login.css" />
     <title>Acceder</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="wrapper">
         <div class="container">
             <h1>Accede a tu cuenta</h1>
@@ -46,12 +47,12 @@
     <script>
         document.getElementById('loginExistente').addEventListener('submit', async function (event) {
             event.preventDefault();
-           
+
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const messageElement = document.getElementById('message');
             try {
-                const response = await fetch('http://localhost:8082/api/login', {
+                const response = await fetch('http://localhost:3000/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -66,8 +67,8 @@
                     localStorage.setItem('userID', data.userID);
                     localStorage.setItem('username', data.username);
 
-                
-                    window.location.href = 'principal.html'; 
+
+                    window.location.href = 'principal.html';
                 } else {
                     messageElement.textContent = `Error: ${data.error}`;
                     messageElement.style.color = `red`;
