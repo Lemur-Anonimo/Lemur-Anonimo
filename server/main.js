@@ -20,7 +20,7 @@ app.use(cors());
 //le decimos a express que cargue la carpeta public
 app.use(express.static(path.join(process.cwd(), "public")));
 
-app.use(express.json()); //vamos a leer el cuerpo de la peticion, osea el ID
+app.use(express.json());
 
 app.post("/api/login", login);
 app.post("/api/register", register);
@@ -29,14 +29,38 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.post("/api/create-class-file", (req, res) => {
-  const { nombreClase, seccion, asunto, sala, id } = req.body;
+  const { nombreClase, seccion, asunto, sala } = req.body;
   // Convertir nombre a formato seguro
   const nombreSeguro = nombreClase.toLowerCase().replace(/\s+/g, "-");
-  // nombre final del archivo
-  const archivo = `clase-${nombreSeguro}-${id}.html`;
-  // Ruta fisica donde se guardara
-  // Usamos process.cwd() para asegurar que apunte a la carpeta raiz del proyecto donde se ejecuta npm start
-  const ruta = path.join(process.cwd(), "public", "clases", archivo);
+
+  // Función para generar ID de 5 caracteres (Mayusculas y Numeros)
+  const generateId = () => {
+    const chars =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "";
+    for (let i = 0; i < 6; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
+
+  let id;
+  let archivo;
+  let ruta;
+  const carpetaClases = path.join(process.cwd(), "public", "clases");
+
+  // Asegurar que la carpeta existe antes de verificar archivos
+  if (!fs.existsSync(carpetaClases)) {
+    fs.mkdirSync(carpetaClases, { recursive: true });
+  }
+
+  // Generar ID único
+  do {
+    id = generateId();
+    archivo = `clase-${nombreSeguro}-${id}.html`;
+    ruta = path.join(carpetaClases, archivo);
+  } while (fs.existsSync(ruta));
+
   // Plantilla HTML base
   const html = `
 <!DOCTYPE html>
@@ -53,12 +77,6 @@ app.post("/api/create-class-file", (req, res) => {
 </body>
 </html>
     `;
-  // Crear carpeta si no existe
-  const carpetaClases = path.join(process.cwd(), "public", "clases");
-
-  if (!fs.existsSync(carpetaClases)) {
-    fs.mkdirSync(carpetaClases, { recursive: true });
-  }
   // Crear archivo
   fs.writeFile(ruta, html, (err) => {
     if (err) {
@@ -68,6 +86,36 @@ app.post("/api/create-class-file", (req, res) => {
     // URL publica
     const urlPublica = `/clases/${archivo}`;
     res.json({ url: urlPublica });
+  });
+});
+
+app.post("/api/join-class", (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ error: "ID es requerido" });
+  }
+
+  const carpetaClases = path.join(process.cwd(), "public", "clases");
+
+  if (!fs.existsSync(carpetaClases)) {
+    return res.status(404).json({ error: "No hay clases creadas" });
+  }
+
+  // Buscar archivo que termine con -<id>.html
+  fs.readdir(carpetaClases, (err, files) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error al leer clases" });
+    }
+
+    const claseEncontrada = files.find(file => file.endsWith(`-${id}.html`));
+
+    if (claseEncontrada) {
+      res.json({ url: `/clases/${claseEncontrada}` });
+    } else {
+      res.status(404).json({ error: "Clase no encontrada" });
+    }
   });
 });
 
