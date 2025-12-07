@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.className = "tarea swiper-slide";
         card.innerHTML = `
-          <div id="img-clase">
+          <div class="img-clase">
             <div class="contenido">
               <h1 class="materia">
                 <a class="a-clase" href="${clase.url}">${clase.nombre}</a>
