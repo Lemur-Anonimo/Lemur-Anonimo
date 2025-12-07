@@ -1,3 +1,11 @@
+// Botones y modales
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("nombreClase").value = "";
+  document.getElementById("seccion").value = "";
+  document.getElementById("asunto").value = "";
+  document.getElementById("sala").value = "";
+});
+
 const btnAbrirModalClase = document.getElementById("abrirOpcionesClase");
 const dialogoClase = document.getElementById("dialogoOpcionesClase");
 // Se abre el dialogo de crear clase
@@ -23,9 +31,83 @@ btnUnirseClaseCancelar.addEventListener("click", () => {
   dialogoUnirseClase.close();
   dialogoClase.showModal();
 });
+
+// Logica para unirse a una clase
+btnUnirseClaseAceptar.addEventListener("click", (e) => {
+  e.preventDefault();
+  const codigo = document.getElementById("codigoClase").value;
+
+  if (!codigo) {
+    alert("Por favor ingrese un código");
+    return;
+  }
+  fetch("/api/join-class", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id: codigo }),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        if (res.status === 404) throw new Error("Clase no encontrada");
+        throw new Error("Error al unirse a la clase");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      window.location.href = data.url;
+    })
+    .catch((err) => {
+      console.error(err);
+      alert(err.message);
+    });
+});
 const btnCrearClaseCancelar = document.getElementById("crearClaseCancelar");
 const btnCrearClaseAceptar = document.getElementById("crearClaseAceptar");
 btnCrearClaseCancelar.addEventListener("click", () => {
   dialogoCrearClase.close();
   dialogoClase.showModal();
+});
+// Logica para la creacion de una clase
+btnCrearClaseAceptar.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const inputNombreClase = document.getElementById("nombreClase").value;
+  const inputSeccion = document.getElementById("seccion").value;
+  const inputAsunto = document.getElementById("asunto").value;
+  const inputSala = document.getElementById("sala").value;
+
+  if (!inputNombreClase) {
+    alert("El nombre de la clase es obligatorio");
+    return;
+  }
+
+  fetch("/api/create-class-file", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nombreClase: inputNombreClase,
+      seccion: inputSeccion,
+      asunto: inputAsunto,
+      sala: inputSala,
+    }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Error al crear la clase");
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Clase creada:", data);
+
+      // Limpiar formulario
+      document.getElementById("nombreClase").value = "";
+      document.getElementById("seccion").value = "";
+      document.getElementById("asunto").value = "";
+      document.getElementById("sala").value = "";
+
+      window.location.href = data.url;
+    })
+    .catch((err) => {
+      console.error(err);
+      alert("Hubo un error al crear la clase");
+    });
 });
