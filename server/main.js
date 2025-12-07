@@ -7,6 +7,7 @@ import { register } from "../loginController.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { generateClassHtml } from "./templates/classTemplate.js";
 
 const { Pool } = pg;
 
@@ -62,23 +63,7 @@ app.post("/api/create-class-file", (req, res) => {
   } while (fs.existsSync(ruta));
 
   // Plantilla HTML base
-  const html = `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>${nombreClase}</title>
-    <a href="/principal.html">Inicio</a>
-    <link rel="stylesheet" href="/css/estiloClase.css">
-</head>
-<body>
-    <h1>${nombreClase}</h1>
-    <h2>${seccion}</h2>
-     <h2>${asunto}</h2>
-      <h2>${sala}</h2>
-    <p>ID de clase: ${id}</p>
-</body>
-</html>
-    `;
+  const html = generateClassHtml(nombreClase, seccion, asunto, sala, id);
   // Crear archivo
   fs.writeFile(ruta, html, (err) => {
     if (err) {
@@ -120,7 +105,7 @@ app.get("/api/classes", (req, res) => {
       let classes = JSON.parse(data);
 
       // Filtrar clases que existen fisicamente
-      const validClasses = classes.filter(clase => {
+      const validClasses = classes.filter((clase) => {
         const fileName = clase.url.split("/").pop();
         const filePath = path.join(process.cwd(), "public", "clases", fileName);
         return fs.existsSync(filePath);

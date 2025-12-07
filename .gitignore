@@ -44,3 +44,4 @@ build/
 .dockerignore
 # Carpeta de clases
 public/clases/
+classes.json
