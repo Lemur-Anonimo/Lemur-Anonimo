@@ -20,13 +20,12 @@ const btnUnirseClaseCancelar = document.getElementById("unirseClaseCancelar");
 const btnUnirseClaseAceptar = document.getElementById("unirseClaseAceptar");
 // Boton de cancelar unirse a clase
 btnUnirseClaseCancelar.addEventListener("click", () => {
-  // Se cierran los dos modales seguidos, si solo se quiere que regrese al anterior quitar el de dialogoClase.close()
   dialogoUnirseClase.close();
-  dialogoClase.close();
+  dialogoClase.showModal();
 });
 const btnCrearClaseCancelar = document.getElementById("crearClaseCancelar");
 const btnCrearClaseAceptar = document.getElementById("crearClaseAceptar");
 btnCrearClaseCancelar.addEventListener("click", () => {
   dialogoCrearClase.close();
-  dialogoClase.close();
+  dialogoClase.showModal();
 });
