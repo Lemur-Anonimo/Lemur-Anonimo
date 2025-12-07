@@ -65,12 +65,29 @@
             <button id="unirseClasebtn">Unirse a Clase</button>
           </form>
         </dialog>
+        <dialog id="crearClaseDialog" closedby="any">
+          <h2>Crear una clase</h2>
+          <label for="nombreClase">Nombre de la clase(obligatorio)</label>
+          <input type="text" />
+          <label for="seccion">Sección</label>
+          <input type="text" />
+          <label for="asunto">Asunto</label>
+          <input type="text" />
+          <label for="sala">Sala</label>
+          <input type="text" />
+          <form method="dialog">
+            <button id="crearClaseCancelar">Cancelar</button>
+            <button id="crearClaseAceptar">Crear</button>
+          </form>
+        </dialog>
 
-        <dialog id="unirseClaseDialog">
+        <dialog id="unirseClaseDialog" closedby="any">
           <h2>Ingrese el código de la clase</h2>
           <input type="text" name="" id="" />
-          <button id="unirseClaseCancelar">Cancelar</button>
-          <button id="unirseClaseAceptar">Unirse</button>
+          <form method="dialog">
+            <button id="unirseClaseCancelar">Cancelar</button>
+            <button id="unirseClaseAceptar">Unirse</button>
+          </form>
         </dialog>
 
         <a href="#"><img src="img/user.jpg" alt="user" class="user-img" /></a>

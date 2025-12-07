@@ -130,3 +130,83 @@
 #unirseClaseCancelar:hover {
     background-color: #bbb !important;
 }
+
+/* Create Class Dialog Styling */
+#crearClaseDialog {
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    background-color: var(--bg-color);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    color: var(--text-color);
+    margin: auto;
+}
+
+#crearClaseDialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+#crearClaseDialog h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+#crearClaseDialog label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+}
+
+#crearClaseDialog input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#crearClaseDialog input[type="text"]:focus {
+    border-color: var(--primary-color);
+}
+
+#crearClaseDialog button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+    margin: 0.5rem 0.5rem 0;
+}
+
+#crearClaseDialog button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+#crearClaseDialog button:active {
+    transform: translateY(0);
+}
+
+#crearClaseCancelar {
+    background-color: #ccc !important;
+    color: #333 !important;
+}
+
+#crearClaseCancelar:hover {
+    background-color: #bbb !important;
+}

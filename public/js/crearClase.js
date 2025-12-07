@@ -4,6 +4,12 @@ const dialogoClase = document.getElementById("dialogoOpcionesClase");
 btnAbrirModalClase.addEventListener("click", () => {
   dialogoClase.showModal();
 });
+const btnCrearClase = document.getElementById("crearClasebtn");
+const dialogoCrearClase = document.getElementById("crearClaseDialog");
+// Se abre el modal para crear una clase
+btnCrearClase.addEventListener("click", () => {
+  dialogoCrearClase.showModal();
+});
 const btnUnirseClase = document.getElementById("unirseClasebtn");
 const dialogoUnirseClase = document.getElementById("unirseClaseDialog");
 // Se abre el modal para unirse a una clase
@@ -16,5 +22,11 @@ const btnUnirseClaseAceptar = document.getElementById("unirseClaseAceptar");
 btnUnirseClaseCancelar.addEventListener("click", () => {
   // Se cierran los dos modales seguidos, si solo se quiere que regrese al anterior quitar el de dialogoClase.close()
   dialogoUnirseClase.close();
+  dialogoClase.close();
+});
+const btnCrearClaseCancelar = document.getElementById("crearClaseCancelar");
+const btnCrearClaseAceptar = document.getElementById("crearClaseAceptar");
+btnCrearClaseCancelar.addEventListener("click", () => {
+  dialogoCrearClase.close();
   dialogoClase.close();
 });
