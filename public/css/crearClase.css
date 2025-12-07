@@ -1,0 +1,132 @@
+:root {
+    --primary-color: #6200ea;
+    --primary-hover: #3700b3;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --border-radius: 12px;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+#dialogoOpcionesClase {
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    background-color: var(--bg-color);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    color: var(--text-color);
+    margin: auto;
+}
+
+#dialogoOpcionesClase::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+#dialogoOpcionesClase h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+#dialogoOpcionesClase form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#dialogoOpcionesClase button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+#dialogoOpcionesClase button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+#dialogoOpcionesClase button:active {
+    transform: translateY(0);
+}
+
+/* Join Class Dialog Styling */
+#unirseClaseDialog {
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    background-color: var(--bg-color);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    color: var(--text-color);
+    margin: auto;
+}
+
+#unirseClaseDialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+#unirseClaseDialog h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+#unirseClaseDialog input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#unirseClaseDialog input[type="text"]:focus {
+    border-color: var(--primary-color);
+}
+
+#unirseClaseDialog button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+    margin: 0 0.5rem;
+}
+
+#unirseClaseDialog button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+#unirseClaseDialog button:active {
+    transform: translateY(0);
+}
+
+#unirseClaseCancelar {
+    background-color: #ccc !important;
+    color: #333 !important;
+}
+
+#unirseClaseCancelar:hover {
+    background-color: #bbb !important;
+}

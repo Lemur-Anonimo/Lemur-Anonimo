@@ -1,0 +1,20 @@
+const btnAbrirModalClase = document.getElementById("abrirOpcionesClase");
+const dialogoClase = document.getElementById("dialogoOpcionesClase");
+// Se abre el dialogo de crear clase
+btnAbrirModalClase.addEventListener("click", () => {
+  dialogoClase.showModal();
+});
+const btnUnirseClase = document.getElementById("unirseClasebtn");
+const dialogoUnirseClase = document.getElementById("unirseClaseDialog");
+// Se abre el modal para unirse a una clase
+btnUnirseClase.addEventListener("click", () => {
+  dialogoUnirseClase.showModal();
+});
+const btnUnirseClaseCancelar = document.getElementById("unirseClaseCancelar");
+const btnUnirseClaseAceptar = document.getElementById("unirseClaseAceptar");
+// Boton de cancelar unirse a clase
+btnUnirseClaseCancelar.addEventListener("click", () => {
+  // Se cierran los dos modales seguidos, si solo se quiere que regrese al anterior quitar el de dialogoClase.close()
+  dialogoUnirseClase.close();
+  dialogoClase.close();
+});
