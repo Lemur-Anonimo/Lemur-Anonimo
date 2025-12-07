@@ -1,0 +1,181 @@
+/* css/S_tarea.css */
+
+:root {
+    --primary-color: #6200ea; 
+    --primary-hover: #3700b3;
+    --bg-gray: #f2f2f2;       
+    --border-color: #ccc;
+    --text-dark: #333;
+    --card-radius: 20px;      
+}
+
+body {
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif; 
+}
+
+.contenedor-tareas {
+    max-width: 1000px; 
+    width: 95%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.encabezado-seccion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.encabezado-seccion h1 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.filtros {
+    display: flex;
+    gap: 10px;
+}
+
+.filtros .filtro {
+    background: #e6e6e6; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 100px; 
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.filtros .filtro:hover {
+    background: #d6d6d6;
+}
+
+.filtros .filtro.activo {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(98, 0, 234, 0.3);
+}
+
+.grid-tareas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tarjeta-tarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    
+    background: var(--bg-gray); 
+    border: 2px solid var(--border-color); 
+    border-radius: var(--card-radius); 
+    
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.tarjeta-tarea:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.info-tarea {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-tarea h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--text-dark);
+}
+
+.info-tarea p {
+    margin: 0;
+    color: gray; 
+    font-size: 0.95rem;
+}
+
+.meta-tarea {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.nombre-clase {
+    background-color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    border: 1px solid #e0e0e0;
+}
+
+.fecha-entrega {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.tarjeta-tarea::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 12px; 
+}
+
+.tarjeta-tarea.pendiente::before {
+    background-color: #ffb74d; 
+}
+.tarjeta-tarea.pendiente .fecha-entrega {
+    color: #f57c00;
+}
+
+.tarjeta-tarea.entregada::before {
+    background-color: #66bb6a; 
+}
+.tarjeta-tarea.entregada .fecha-entrega {
+    color: #2e7d32;
+}
+
+.tarjeta-tarea.retrasada::before {
+    background-color: #ef5350; 
+}
+.tarjeta-tarea.retrasada .fecha-entrega {
+    color: #c62828;
+}
+
+@media (max-width: 768px) {
+    .tarjeta-tarea {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .meta-tarea {
+        align-items: flex-start;
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+}

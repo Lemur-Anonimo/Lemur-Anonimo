@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Tareas</title>
+  
+  <link rel="stylesheet" href="css/principal.css" />
+  <link rel="stylesheet" href="css/crearClase.css" />
+  
+  <link rel="stylesheet" href="css/S_tarea.css" /> 
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="izquierda">
+      <a href="principal.html"><img src="img/menu.svg" alt="menu" class="header-img" /></a>
+      <a href="principal.html"><h2>Lemur Anonimo</h2></a>
+    </div>
+
+    <nav class="centro">
+      <a href="S_tarea.html"><img src="img/assignment.svg" alt="Tarea" class="header-img" /></a>
+      <a href="S_tarea.html"><h2>Tarea</h2></a>
+
+      <a href="https://calendar.google.com" target="_blank"><img src="img/calander.svg" alt="Calendario" class="header-img" /></a>
+      <a href="https://calendar.google.com" target="_blank"><h2>Calendario</h2></a>
+
+      <a href="https://meet.google.com/landing" target="_blank"><img src="img/videocall.svg" alt="Video Llamada" class="header-img" /></a>
+      <a href="https://meet.google.com/landing" target="_blank"><h2>Video Llamadas</h2></a>
+    </nav>
+
+    <div class="derecha">
+      <a href="#"><img src="img/notification.svg" alt="notif" class="header-img" /></a>
+      <a href="principal.html" style="text-decoration: none; color: black; font-weight: bold; margin-right: 15px;">Volver</a>
+      <a href="#"><img src="img/user.jpg" alt="user" class="user-img" /></a>
+    </div>
+  </header>
+
+  <main class="contenedor-tareas">
+    <div class="encabezado-seccion">
+      <h1>Tareas Pendientes</h1>
+      <div class="filtros">
+        <button id="btn-todas" class="filtro activo">Todas</button>
+        <button id="btn-pendientes" class="filtro">Sin entregar</button>
+        <button id="btn-completadas" class="filtro">Completadas</button>
+      </div>
+    </div>
+
+    <div id="lista-de-tareas" class="grid-tareas"></div>
+  </main>
+
+  <script src="js/S_tarea.js"></script>
+</body>
+</html>
