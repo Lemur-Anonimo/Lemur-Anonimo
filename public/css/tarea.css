@@ -5,11 +5,28 @@
     background-color: rgb(255, 255, 255);
 }
 
+
+
+html,
 body {
-    background-color: rgb(196, 48, 212);
-    font-family: "Outfit", sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+
+}
+
+a {
+    color: black;
+    text-decoration: none;
 
 
+}
+
+a:hover {
+    text-decoration: underline;
 
 }
 
@@ -81,42 +98,39 @@ body {
     border-radius: 10px;
 }
 
-.contenido,
-.a-clase {
-    color: white;
-}
-
-.materia {
-    font-size: 50px;
-}
-
-a {
-    color: black;
-    background-color: transparent;
-
-}
-
 .container {
     height: 100vh;
-    max-width: 2400px;
+    max-width: 3000px;
     min-width: 300px;
     width: 100%;
-
     display: flex;
     flex-direction: row;
     background-color: rgb(255, 255, 255);
 
 }
 
+.contenido,
+.a-clase {
+    color: white;
+
+}
+
+.materia {
+    font-size: 50px;
+}
+
+
+
+
 .asignacionTask {
-    width: 70%;
+    width: 100%;
 
     height: 100%;
 
     background-color: #ffffff;
 
     padding: 2rem;
- 
+
 
     display: flex;
     flex-direction: column;
@@ -127,8 +141,8 @@ a {
 }
 
 .subirTarea {
-    width: 30%;
-    /* Ocupa el 30% del ancho del padre (.container) */
+    width: 40%;
+    max-width: 2500px;
     height: 100%;
     /* Ocupa todo el alto disponible */
     background-color: transparent;
@@ -136,7 +150,7 @@ a {
     padding: 2rem;
 
     /* FLEXBOX PARA CENTRAR LOS BOTONES: */
-    display: flex;
+    display:flex;
     flex-direction: column;
     /* Apila los botones verticalmente */
     justify-content: center;
@@ -145,8 +159,8 @@ a {
     /* Centra el grupo de botones horizontalmente */
     gap: 1.5rem;
     /* Espacio entre los botones */
-   
-    
+
+
 
 }
 
@@ -158,8 +172,8 @@ a {
 
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    width: 80%;
-    max-width: 300px;
+    width: 90%;
+    max-width: 600px;
     height: 20em;
     /* Limitar el ancho de los botones */
     text-align: center;
@@ -177,13 +191,14 @@ a {
     font-weight: 600;
 
 
-    width: 80%;
-    max-width: 300px;
+    width: 90%;
+    max-width: 600px;
     height: 20em;
     /* Limitar el ancho de los botones */
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content:center;
+    align-items:normal;
     border-radius: 10px;
     flex-direction: column;
     box-shadow: 0 0 20px 0 rgb(131, 131, 131);
@@ -196,6 +211,7 @@ a {
     color: white;
     border: none;
     width: 100%;
+
     height: 3em;
     border-radius: 10px;
 }
@@ -223,14 +239,14 @@ a {
 }
 
 #contenido {
-    width: 80%;
-    /* Ancho dentro del 70% */
+    width: 90%;
+
     height: 80%;
-    /* Alto dentro del 70% */
-    max-width: 1000px;
-    max-height: 800px;
+
+    max-width: 1900px;
+    max-height: 1200px;
     background-color: transparent;
-    /* Color crema/amarillo claro */
+
     border-radius: 1rem;
     padding: 2rem;
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);

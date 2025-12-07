@@ -1,0 +1,85 @@
+* {
+    padding: 0%;
+    background-color: rgb(255, 255, 255);
+
+
+}
+
+
+.header,
+.izquierda,
+.derecha,
+.centro {
+    display: inline-flex;
+    gap: 50px;
+    pad: 5px;
+    border: 10px solid black;
+    width: 99%;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+#user_img {
+    border-radius: 50px 50px 50px 50px;
+    background-color: red;
+    width: 70px;
+    height: 70px;
+}
+
+.imagen_perfil {
+    margin: 0%;
+    width: 80%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    background-image: url(/img/hojas.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+
+}
+a .header-img{
+    width: 2.5em; 
+    height: 2.5em;
+}
+
+
+#titulo_de_clase {
+    font-size: 100px;
+    color: rgb(245, 233, 233);
+    background-color: transparent;
+
+}
+
+/*-----------------------------------------------*/
+
+.cajon-aviso-tareas{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: right;
+    align-items: right;
+}
+.tarea, .aviso{
+    border: 10px solid black;
+    display: inline-flex;
+    background-color: gray;
+    margin-top: 50px;
+    justify-content: right;
+    border-radius:  40px;
+}
+.tarea{
+    width: 900px;
+    height: 170px;
+}
+.aviso{
+    width: 900px;
+    height: 470px;
+}
