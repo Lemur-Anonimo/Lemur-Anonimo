@@ -61,8 +61,7 @@
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat porro nostrum vero omnis nulla
                     debitis iusto eum fuga ullam? Pariatur consequatur nulla dolor minima quaerat, assumenda culpa
                     labore iure amet!</p>
-            </div>
-
+            </div>            
         </div>
         <div class="subirTarea">
             <div class="btn">
@@ -71,10 +70,41 @@
             </div>
             <div class="comentarios">
                 <h1>Comentarios Privados</h1>
-                <h2>Añadir comentario privado</h2>
+                <ul id="lista-comentarios"></ul>
             </div>
-        </div>
-    </div>
+
+<!-- Script al final del body -->
+<script>
+    const idUsuario = 1; // Simulación del usuario logueado
+    const idTarea = 1;   // Simulación del id de la tarea
+
+    async function cargarComentarios(idUsuario, idTarea) {
+        try {
+            const response = await fetch(`http://localhost:3000/api/comentarios/${idUsuario}/${idTarea}`);
+            const comentarios = await response.json();
+
+            const lista = document.getElementById("lista-comentarios");
+            lista.innerHTML = "";
+
+            comentarios.forEach(c => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <p class="contenido">${c.contenido}</p>
+                    <div class="meta">
+                        <span class="usuario">Autor: ${c.autor || 'Anónimo'}</span>
+                        <span class="fecha">${c.fecha_subida ? new Date(c.fecha_subida).toLocaleString() : 'Sin fecha'}</span>
+                    </div>
+                `;
+                lista.appendChild(li);
+            });
+        } catch (error) {
+            console.error("Error cargando comentarios:", error);
+        }
+    }
+
+    // Llamamos la función al cargar la página
+    cargarComentarios(idUsuario, idTarea);
+</script>
 
 </body>
 

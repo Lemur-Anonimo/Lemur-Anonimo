@@ -9,6 +9,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { generateClassHtml } from "./templates/classTemplate.js";
 
+import { getComentariosPrivados } from './controllers/ControllerComentariosPrivados.js';
 const { Pool } = pg;
 
 const PORT = process.env.SERVER_PORT;
@@ -17,6 +18,14 @@ import cors from "cors";
 const app = express();
 
 app.use(cors());
+
+// ------------------- NUEVO: rutas para comentarios privados -------------------
+
+// Obtener comentarios de un usuario en una tarea
+app.get('/api/comentarios/:id_usuario/:id_tarea', getComentariosPrivados);
+
+// ------------------------------------------------------------------------------
+
 
 //le decimos a express que cargue la carpeta public
 app.use(express.static(path.join(process.cwd(), "public")));
