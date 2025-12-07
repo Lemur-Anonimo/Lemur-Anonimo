@@ -1,0 +1,94 @@
+:root {
+  --primary-color: #6200ea;
+  --primary-hover: #3700b3;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --border-radius: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+#dialogoAgregarTarea {
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  background-color: var(--bg-color);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  color: var(--text-color);
+  margin: auto;
+}
+
+#dialogoAgregarTarea::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+#dialogoAgregarTarea h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+#dialogoAgregarTarea form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#dialogoAgregarTarea label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+#dialogoAgregarTarea input,
+#dialogoAgregarTarea textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#dialogoAgregarTarea input:focus,
+#dialogoAgregarTarea textarea:focus {
+  border-color: var(--primary-color);
+}
+
+#dialogoAgregarTarea button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 500;
+  margin: 0.5rem 0.5rem 0;
+}
+
+#dialogoAgregarTarea button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+#dialogoAgregarTarea button:active {
+  transform: translateY(0);
+}
+
+#cancelarAgregarTarea {
+  background-color: #ccc !important;
+  color: #333 !important;
+}
+
+#cancelarAgregarTarea:hover {
+  background-color: #bbb !important;
+}
