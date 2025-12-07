@@ -67,6 +67,8 @@ app.post("/api/create-class-file", (req, res) => {
 <html>
 <head>
     <title>${nombreClase}</title>
+    <a href="/principal.html">Inicio</a>
+    <link rel="stylesheet" href="/css/estiloClase.css">
 </head>
 <body>
     <h1>${nombreClase}</h1>
@@ -84,9 +86,59 @@ app.post("/api/create-class-file", (req, res) => {
       return res.status(500).json({ error: "No se pudo crear el archivo" });
     }
     // URL publica
+    // URL publica
     const urlPublica = `/clases/${archivo}`;
+
+    // Guardar en classes.json
+    const classesFile = path.join(process.cwd(), "classes.json");
+    let classes = [];
+    if (fs.existsSync(classesFile)) {
+      try {
+        const data = fs.readFileSync(classesFile, "utf8");
+        classes = JSON.parse(data);
+      } catch (e) {
+        console.error("Error reading classes.json", e);
+      }
+    }
+    classes.push({
+      id,
+      nombre: nombreClase,
+      seccion,
+      url: urlPublica,
+    });
+    fs.writeFileSync(classesFile, JSON.stringify(classes, null, 2));
+
     res.json({ url: urlPublica });
   });
+});
+
+app.get("/api/classes", (req, res) => {
+  const classesFile = path.join(process.cwd(), "classes.json");
+  if (fs.existsSync(classesFile)) {
+    try {
+      const data = fs.readFileSync(classesFile, "utf8");
+      let classes = JSON.parse(data);
+
+      // Filtrar clases que existen fisicamente
+      const validClasses = classes.filter(clase => {
+        const fileName = clase.url.split("/").pop();
+        const filePath = path.join(process.cwd(), "public", "clases", fileName);
+        return fs.existsSync(filePath);
+      });
+
+      // Si hubo cambios, actualizar el JSON
+      if (validClasses.length !== classes.length) {
+        fs.writeFileSync(classesFile, JSON.stringify(validClasses, null, 2));
+      }
+
+      res.json(validClasses);
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ error: "Error reading classes" });
+    }
+  } else {
+    res.json([]);
+  }
 });
 
 app.post("/api/join-class", (req, res) => {
@@ -109,7 +161,7 @@ app.post("/api/join-class", (req, res) => {
       return res.status(500).json({ error: "Error al leer clases" });
     }
 
-    const claseEncontrada = files.find(file => file.endsWith(`-${id}.html`));
+    const claseEncontrada = files.find((file) => file.endsWith(`-${id}.html`));
 
     if (claseEncontrada) {
       res.json({ url: `/clases/${claseEncontrada}` });

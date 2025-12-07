@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="css/crearClase.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <title>Lemur Anonimo</title>
 </head>
 
@@ -20,23 +22,19 @@
     </div>
 
     <nav class="centro">
-        <a href="#"
-          ><img src="img/assignment.svg" alt="Tarea" class="header-img"
-        /></a>
+      <a href="#"><img src="img/assignment.svg" alt="Tarea" class="header-img" /></a>
       <a href="#">
         <h2>Tarea</h2>
       </a>
 
-        <a href="https://calendar.google.com" target="_blank"
-          ><img src="img/calander.svg" alt="Calendario" class="header-img"
-        /></a>
+      <a href="https://calendar.google.com" target="_blank"><img src="img/calander.svg" alt="Calendario"
+          class="header-img" /></a>
       <a href="https://calendar.google.com" target="_blank">
         <h2>Calendario</h2>
       </a>
 
-        <a href="https://meet.google.com/landing" target="_blank"
-          ><img src="img/videocall.svg" alt="Video Llamada" class="header-img"
-        /></a>
+      <a href="https://meet.google.com/landing" target="_blank"><img src="img/videocall.svg" alt="Video Llamada"
+          class="header-img" /></a>
       <a href="https://meet.google.com/landing" target="_blank">
         <h2>Video Llamadas</h2>
       </a>
@@ -64,13 +62,13 @@
       <dialog id="crearClaseDialog" closedby="any">
         <h2>Crear una clase</h2>
         <label for="nombreClase">Nombre de la clase(obligatorio)</label>
-        <input type="text" id="nombreClase" />
+        <input type="text" id="nombreClase" placeholder="Español I" />
         <label for="seccion">Sección</label>
-        <input type="text" id="seccion" />
+        <input type="text" id="seccion" placeholder="Humanidades" />
         <label for="asunto">Asunto</label>
-        <input type="text" id="asunto" />
+        <input type="text" id="asunto" placeholder="II Periodo" />
         <label for="sala">Sala</label>
-        <input type="text" id="sala" />
+        <input type="text" id="sala" placeholder="1A" />
         <form method="dialog">
           <button id="crearClaseCancelar">Cancelar</button>
           <button id="crearClaseAceptar">Crear</button>
@@ -94,42 +92,51 @@
     <h1 id="titulo_de_clase">TUS CLASES</h1>
   </section>
 
-  <section class="cajon-aviso-tareas">
-    <div class="tarea">
-      <div id="img-clase">
-        <div class="contenido">
-          <h1 class="materia">
-            <a class="a-clase" href="#"> Microcontroladores</a>
-          </h1>
-          <h2><strong>Erick Reyes</strong></h2>
+  <section class="cajon-aviso-tareas swiper">
+    <div class="swiper-wrapper">
+      <div class="tarea swiper-slide">
+        <div id="img-clase">
+          <div class="contenido">
+            <h1 class="materia">
+              <a class="a-clase" href="#"> Microcontroladores</a>
+            </h1>
+            <h2><strong>Erick Reyes</strong></h2>
+          </div>
+        </div>
+      </div>
+      <div class="tarea swiper-slide">
+        <div id="img-clase">
+          <div class="contenido">
+            <h1 class="materia">
+              <a class="a-clase" href="curso.html">
+                Desarrollo de Software a Gran Escala</a>
+            </h1>
+            <h2><strong>Ismael Robles</strong></h2>
+          </div>
+        </div>
+      </div>
+      <div class="tarea swiper-slide">
+        <div id="img-clase">
+          <div class="contenido">
+            <h1 class="materia">
+              <a class="a-clase" class="a-clase" href="#">Interfaces de Usuario</a>
+            </h1>
+            <h2><strong>Monserrat Alvarado</strong></h2>
+          </div>
         </div>
       </div>
     </div>
-    <div class="tarea">
-      <div id="img-clase">
-        <div class="contenido">
-          <h1 class="materia">
-            <a class="a-clase" href="curso.html">
-                Desarrollo de Software a Gran Escala</a
-              >
-          </h1>
-          <h2><strong>Ismael Robles</strong></h2>
-        </div>
-      </div>
-    </div>
-    <div class="tarea">
-      <div id="img-clase">
-        <div class="contenido">
-          <h1 class="materia">
-              <a class="a-clase" class="a-clase" href="#"
-                >Interfaces de Usuario</a
-              >
-          </h1>
-          <h2><strong>Monserrat Alvarado</strong></h2>
-        </div>
-      </div>
-    </div>
+    <div class="swiper-pagination"></div>
+
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <div class="swiper-scrollbar"></div>
   </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/crearClase.js"></script>
+  <script src="js/swiper.js"></script>
 </body>
+
 </html>
