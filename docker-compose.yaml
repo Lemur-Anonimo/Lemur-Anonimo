@@ -32,6 +32,7 @@ services:
     volumes:
       - database-v:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/classroom.sql:/docker-entrypoint-initdb.d/classroom.sql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_DATABASE}" ]
       interval: 10s
