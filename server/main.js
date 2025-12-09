@@ -10,12 +10,16 @@ import { fileURLToPath } from "url";
 import { generateClassHtml } from "./templates/classTemplate.js";
 
 import { getComentariosPrivados } from './controllers/ControllerComentariosPrivados.js';
+
+import { subirEntrega } from "./controllers/ControllerEntregas.js";
+
 const { Pool } = pg;
 
 const PORT = process.env.SERVER_PORT;
 import express from "express";
 import cors from "cors";
 const app = express();
+app.use(express.json());
 
 app.use(cors());
 
@@ -26,11 +30,11 @@ app.get('/api/comentarios/:id_usuario/:id_tarea', getComentariosPrivados);
 
 // ------------------------------------------------------------------------------
 
-
+app.post('/api/entregas', subirEntrega);
+console.log("Ruta POST /api/entregas registrada");
 //le decimos a express que cargue la carpeta public
 app.use(express.static(path.join(process.cwd(), "public")));
 
-app.use(express.json());
 
 app.post("/api/login", login);
 app.post("/api/register", register);

@@ -128,27 +128,69 @@ a {
 
 .subirTarea {
     width: 30%;
-    /* Ocupa el 30% del ancho del padre (.container) */
-    height: 100%;
-    /* Ocupa todo el alto disponible */
-    background-color: transparent;
-    /* Azul oscuro elegante */
+    max-width: 400px;
+    min-width: 280px;
+    background-color: #f9f9f9;   /* fondo suave para diferenciar el bloque */
     padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 
-    /* FLEXBOX PARA CENTRAR LOS BOTONES: */
     display: flex;
     flex-direction: column;
-    /* Apila los botones verticalmente */
-    justify-content: center;
-    /* Centra el grupo de botones verticalmente */
-    align-items: center;
-    /* Centra el grupo de botones horizontalmente */
     gap: 1.5rem;
-    /* Espacio entre los botones */
-   
-    
-
+    box-sizing: border-box;
 }
+
+/* Título */
+.subirTarea h2 {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Área de texto */
+.subirTarea textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Input de archivo */
+.subirTarea input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Contenedor de botones */
+.subirTarea .btn {
+    display: flex;
+    flex-direction: column; /* apila los botones */
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Botones */
+.subirTarea button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: all 0.2s ease-in-out;
+}
+
 
 /*Botones*/
 .btn {
