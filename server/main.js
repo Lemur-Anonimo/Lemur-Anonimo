@@ -7,6 +7,11 @@ import { register } from "../loginController.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { generateClassHtml } from "./templates/classTemplate.js";
+
+import { getComentariosPrivados } from './controllers/ControllerComentariosPrivados.js';
+
+import { subirEntrega } from "./controllers/ControllerEntregas.js";
 
 const { Pool } = pg;
 
@@ -14,13 +19,22 @@ const PORT = process.env.SERVER_PORT;
 import express from "express";
 import cors from "cors";
 const app = express();
+app.use(express.json());
 
 app.use(cors());
 
+// ------------------- NUEVO: rutas para comentarios privados -------------------
+
+// Obtener comentarios de un usuario en una tarea
+app.get('/api/comentarios/:id_usuario/:id_tarea', getComentariosPrivados);
+
+// ------------------------------------------------------------------------------
+
+app.post('/api/entregas', subirEntrega);
+console.log("Ruta POST /api/entregas registrada");
 //le decimos a express que cargue la carpeta public
 app.use(express.static(path.join(process.cwd(), "public")));
 
-app.use(express.json());
 
 app.post("/api/login", login);
 app.post("/api/register", register);
@@ -62,21 +76,7 @@ app.post("/api/create-class-file", (req, res) => {
   } while (fs.existsSync(ruta));
 
   // Plantilla HTML base
-  const html = `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>${nombreClase}</title>
-</head>
-<body>
-    <h1>${nombreClase}</h1>
-    <h2>${seccion}</h2>
-     <h2>${asunto}</h2>
-      <h2>${sala}</h2>
-    <p>ID de clase: ${id}</p>
-</body>
-</html>
-    `;
+  const html = generateClassHtml(nombreClase, seccion, asunto, sala, id);
   // Crear archivo
   fs.writeFile(ruta, html, (err) => {
     if (err) {
@@ -84,9 +84,59 @@ app.post("/api/create-class-file", (req, res) => {
       return res.status(500).json({ error: "No se pudo crear el archivo" });
     }
     // URL publica
+    // URL publica
     const urlPublica = `/clases/${archivo}`;
+
+    // Guardar en classes.json
+    const classesFile = path.join(process.cwd(), "classes.json");
+    let classes = [];
+    if (fs.existsSync(classesFile)) {
+      try {
+        const data = fs.readFileSync(classesFile, "utf8");
+        classes = JSON.parse(data);
+      } catch (e) {
+        console.error("Error reading classes.json", e);
+      }
+    }
+    classes.push({
+      id,
+      nombre: nombreClase,
+      seccion,
+      url: urlPublica,
+    });
+    fs.writeFileSync(classesFile, JSON.stringify(classes, null, 2));
+
     res.json({ url: urlPublica });
   });
+});
+
+app.get("/api/classes", (req, res) => {
+  const classesFile = path.join(process.cwd(), "classes.json");
+  if (fs.existsSync(classesFile)) {
+    try {
+      const data = fs.readFileSync(classesFile, "utf8");
+      let classes = JSON.parse(data);
+
+      // Filtrar clases que existen fisicamente
+      const validClasses = classes.filter((clase) => {
+        const fileName = clase.url.split("/").pop();
+        const filePath = path.join(process.cwd(), "public", "clases", fileName);
+        return fs.existsSync(filePath);
+      });
+
+      // Si hubo cambios, actualizar el JSON
+      if (validClasses.length !== classes.length) {
+        fs.writeFileSync(classesFile, JSON.stringify(validClasses, null, 2));
+      }
+
+      res.json(validClasses);
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ error: "Error reading classes" });
+    }
+  } else {
+    res.json([]);
+  }
 });
 
 app.post("/api/join-class", (req, res) => {
@@ -109,7 +159,7 @@ app.post("/api/join-class", (req, res) => {
       return res.status(500).json({ error: "Error al leer clases" });
     }
 
-    const claseEncontrada = files.find(file => file.endsWith(`-${id}.html`));
+    const claseEncontrada = files.find((file) => file.endsWith(`-${id}.html`));
 
     if (claseEncontrada) {
       res.json({ url: `/clases/${claseEncontrada}` });

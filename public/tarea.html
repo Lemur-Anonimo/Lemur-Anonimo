@@ -54,6 +54,11 @@
         </div>
     </header>
 
+<div class="container">
+    <div class="asignacionTask">
+        <div id="contenido">
+            <h1>Titulo de Tarea</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
     <div class="container">
 
         <div class="asignacionTask">
@@ -74,6 +79,11 @@
             </div>
 
         </div>
+
+        <!-- Comentarios dentro de asignacionTask -->
+        <div class="comentarios">
+            <h1>Comentarios Privados</h1>
+            <ul id="lista-comentarios"></ul>
         <div class="subirTarea">
 
             <div class="btn">
@@ -87,6 +97,98 @@
             </div>
         </div>
     </div>
+
+<div class="subirTarea">
+  <h2>Subir entrega</h2>
+  <form id="form-entrega">
+    <textarea id="texto_respuesta" name="texto_respuesta" placeholder="Escribe tu respuesta aquí..."></textarea>
+    <!-- El input de archivo queda, pero solo usamos el nombre -->
+    <input type="file" id="archivo" name="archivo" />
+    <div class="btn">
+      <button type="submit" id="subir">+ Añadir</button>
+      <button type="button" id="hecho">Marcar como completado</button>
+    </div>
+  </form>
+</div>
+</div>
+
+<!-- Script al final del body -->
+<script>
+    const idUsuario = 1; // Simulación del usuario logueado
+    const idTarea = 1;   // Simulación del id de la tarea
+
+    async function cargarComentarios(idUsuario, idTarea) {
+        try {
+            const response = await fetch(`http://localhost:3000/api/comentarios/${idUsuario}/${idTarea}`);
+            const comentarios = await response.json();
+
+            const lista = document.getElementById("lista-comentarios");
+            lista.innerHTML = "";
+
+            comentarios.forEach(c => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <p class="contenido">${c.contenido}</p>
+                    <div class="meta">
+                        <span class="usuario">Autor: ${c.autor || 'Anónimo'}</span>
+                        <span class="fecha">${c.fecha_subida ? new Date(c.fecha_subida).toLocaleString() : 'Sin fecha'}</span>
+                    </div>
+                `;
+                lista.appendChild(li);
+            });
+        } catch (error) {
+            console.error("Error cargando comentarios:", error);
+        }
+    }
+
+    // Llamamos la función al cargar la página
+    cargarComentarios(idUsuario, idTarea);
+</script>
+
+<script>
+  document.getElementById("form-entrega").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const texto_respuesta = document.getElementById("texto_respuesta").value.trim();
+    const archivoInput = document.getElementById("archivo");
+    const archivo = archivoInput.files[0]; // opcional
+    const nombre_archivo = archivo ? archivo.name : null;
+
+    // Simulación: valores fijos de tarea y usuario (puedes reemplazar con dinámicos)
+    const id_tarea = 1;
+    const id_usuario = 1;
+
+    const body = {
+      id_tarea,
+      id_usuario,
+      texto_respuesta,
+      nombre_archivo
+    };
+
+    try {
+      const response = await fetch("/api/entregas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      });
+
+      const data = await response.json();
+      console.log("Respuesta del servidor:", data);
+
+      alert(data.message || "Entrega enviada");
+    } catch (error) {
+      console.error("Error al enviar entrega:", error);
+      alert("Error al enviar entrega");
+    }
+  });
+
+  document.getElementById("hecho").addEventListener("click", () => {
+    alert("Tarea marcada como completada");
+  });
+</script>
+
 
 </body>
 

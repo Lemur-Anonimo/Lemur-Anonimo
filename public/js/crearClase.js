@@ -111,3 +111,38 @@ btnCrearClaseAceptar.addEventListener("click", (e) => {
       alert("Hubo un error al crear la clase");
     });
 });
+
+// Cargar clases al iniciar
+document.addEventListener("DOMContentLoaded", () => {
+  // Limpiar inputs
+  const inputs = document.querySelectorAll("#crearClaseDialog input");
+  inputs.forEach(input => input.value = "");
+
+  fetch("/api/classes")
+    .then(res => res.json())
+    .then(classes => {
+      const container = document.querySelector(".swiper-wrapper");
+      classes.forEach(clase => {
+        const card = document.createElement("div");
+        card.className = "tarea swiper-slide";
+        card.innerHTML = `
+          <div class="img-clase">
+            <div class="contenido">
+              <h1 class="materia">
+                <a class="a-clase" href="${clase.url}">${clase.nombre}</a>
+              </h1>
+              <h2><strong>${clase.seccion}</strong></h2>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Actualizar Swiper si existe
+      const swiperEl = document.querySelector(".swiper");
+      if (swiperEl && swiperEl.swiper) {
+        swiperEl.swiper.update();
+      }
+    })
+    .catch(err => console.error("Error cargando clases:", err));
+});
